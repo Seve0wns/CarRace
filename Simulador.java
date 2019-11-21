@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Simulador {
-    static Veiculo[] veiculos;
-    static Scanner leitor;
+    private static Veiculo[] veiculos;
+    private static Scanner leitor;
 
     public static void main(String[] args) {
         int menu;
@@ -14,14 +14,58 @@ public class Simulador {
             printMenu();
             System.out.println("Opção menu: ");
             menu = verify(0, 12);
-            if(menu == 1)
-                incluirVeiculo();
-            else if(menu == 2)
+            if(menu == 1) {
+                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                incluirVeiculo(verify(1,4));
+            }
+            else if(menu == 2) {
+                System.out.println("Informe o id do veículo: ");
                 removerVeiculo(verify(0,19));
-            else if(menu == 3)
-
-            
-
+            }
+            else if(menu == 3) {
+                System.out.println("Informe o id do veículo: ");
+                int id = verify(0,19);
+                leitor = new Scanner(System.in);
+                System.out.println("Informe a quantidade de combustível: ");
+                int litros = leitor.nextInt();
+                abastecerVeiculo(id,litros);
+            }
+            else if(menu == 4) {
+                System.out.println("Informe o id do veículo: ");
+                moverVeiculo(verify(0,19));
+            }
+            else if(menu == 5) {
+                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                moverTipo(verify(1,4));
+            }
+            else if(menu == 6) {
+                printDadosTodos();
+            }
+            else if(menu == 7) {
+                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                printDadosTipo(verify(1,4));
+            }
+            else if(menu == 8) {
+                System.out.println("Informe o id do veículo: ");
+                int id = verify(0,19);
+                int n = veiculos[id].Getnrod();
+                System.out.println("Informe o número do penu (1 - "+ n +"): ");
+                esvaziarPneu(id,verify(1,n));
+            }
+            else if(menu == 9) {
+                System.out.println("Informe o id do veículo: ");
+                int id = verify(0,19);
+                int n = veiculos[id].Getnrod();
+                System.out.println("Informe o número do penu (1 - "+ n +"): ");
+                calibrarPneu(id,verify(1,n));
+            }
+            else if(menu == 10) {
+                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                calibrarTipo(verify(1,4));
+            }
+            else if(menu == 11) {
+                printCorrida();
+            }
         }
     }
 
@@ -35,7 +79,6 @@ public class Simulador {
         } while (output < chao || output > teto);
         return output;
     }
-
     private static void printMenu() {
         System.out.println("00 - Sair");
         System.out.println("01 - Incluir veículo");
@@ -50,21 +93,18 @@ public class Simulador {
         System.out.println("10 - Calibrar todos os pneus por tipo do veículo");
         System.out.println("11 - Imprimir pista de corrida");
     }
-
-    private static void incluirVeiculo() {
+    private static void incluirVeiculo(int tipo) {
         int i = 0;
         while (i < 20 && veiculos[i] != null)
             i++;
         if (i < 20) {
-            System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
-            int opt = verify(1, 4);
-            if (opt == 1)
+            if (tipo == 1)
                 veiculos[i] = new Bicicleta(i);
-            else if (opt == 2)
+            else if (tipo == 2)
                 veiculos[i] = new Motocicleta(i);
-            else if (opt == 3)
+            else if (tipo == 3)
                 veiculos[i] = new CarroPopular(i);
-            else if (opt == 4)
+            else if (tipo == 4)
                 veiculos[i] = new Ferrari(i);
         }
         else
@@ -76,9 +116,170 @@ public class Simulador {
         else
             veiculos[id]=null;
     }
-    private static void abastecerVeiculo(int id) {
+    private static void abastecerVeiculo(int id,int l) {
         if(veiculos[id]==null)
             System.out.println("Veículo inexistente!");
-        else if(veiculos[id])
+        else if(veiculos[id] instanceof Bicicleta)
+            System.out.println("Você não pode abastecer uma bicicleta!");
+        else {
+            Automovel aux = (Automovel) veiculos[id]; 
+            aux.abastecer(l);
+        }
+    }
+    private static void moverVeiculo(int id) {
+        if(veiculos[id]==null)
+            System.out.println("Veículo inexistente!");
+        else if(veiculos[id] instanceof Bicicleta) {
+            if(veiculos[id].Mover())
+                System.out.println("Moveu!");
+            else
+                System.out.println("Não moveu!");
+        }
+        else {
+            Automovel aux = (Automovel) veiculos[id];
+            if(aux.Mover())
+                System.out.println("Moveu!");
+            else
+                System.out.println("Não moveu!");
+        }
+    }
+    private static void moverTipo(int tipo) {
+        if(tipo==1)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Bicicleta)
+                    x.Mover();
+            }
+        else if(tipo==2)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Motocicleta) {
+                    Automovel aux = (Automovel) x;
+                    aux.Mover();
+                }
+            }
+        else if(tipo==3)
+            for(Veiculo x : veiculos) {
+                if(x instanceof CarroPopular) {
+                    Automovel aux = (Automovel) x;
+                    aux.Mover();
+                }
+            }
+        else if(tipo==4)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Ferrari) {
+                    Automovel aux = (Automovel) x;
+                    aux.Mover();
+                }
+            }
+    }
+    private static void printDadosTodos() {
+        for(Veiculo x : veiculos) {
+            if(x instanceof Bicicleta) {
+                Bicicleta aux = (Bicicleta) x;
+                System.out.println(aux);
+            }
+            else if(x instanceof Motocicleta) {
+                Motocicleta aux = (Motocicleta) x;
+                System.out.println(aux);
+            }
+            else if(x instanceof CarroPopular) {
+                CarroPopular aux = (CarroPopular) x;
+                System.out.println(aux);
+            }
+            else if(x instanceof Ferrari) {
+                Ferrari aux = (Ferrari) x;
+                System.out.println(aux);
+            }
+        }
+    }
+    private static void printDadosTipo(int tipo) {
+        if(tipo==1)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Bicicleta) {
+                    Bicicleta aux = (Bicicleta) x;
+                    System.out.println(aux);
+                }
+            }
+        else if(tipo==2)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Motocicleta) {
+                    Motocicleta aux = (Motocicleta) x;
+                    System.out.println(aux);
+                }
+            }
+        else if(tipo==3)
+            for(Veiculo x : veiculos) {
+                if(x instanceof CarroPopular) {
+                    CarroPopular aux = (CarroPopular) x;
+                    System.out.println(aux);
+                }
+            }
+        else if(tipo==4)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Ferrari) {
+                    Ferrari aux = (Ferrari) x;
+                    System.out.println(aux);
+                }
+            }
+    }
+    private static void esvaziarPneu(int id,int pneu) {
+        veiculos[id].Esvaziar(pneu-1);
+    }
+    private static void calibrarPneu(int id,int pneu) {
+        veiculos[id].calibra(pneu-1);
+    }
+    private static void calibrarTipo(int tipo) {
+        if(tipo == 1)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Bicicleta) {
+                    x.calibra(0);
+                    x.calibra(1);
+                }
+            }
+        else if(tipo == 2)
+            for(Veiculo x : veiculos) {
+                if(x instanceof Motocicleta) {
+                    x.calibra(0);
+                    x.calibra(1);
+                }
+            }
+        else if(tipo == 3)
+            for(Veiculo x : veiculos) {
+                if(x instanceof CarroPopular) {
+                    x.calibra(0);
+                    x.calibra(1);
+                    x.calibra(2);
+                    x.calibra(3);
+                }
+            }
+        else if(tipo == 4)
+            for(Veiculo x : veiculos)
+                if(x instanceof Ferrari) {
+                    x.calibra(0);
+                    x.calibra(1);
+                    x.calibra(2);
+                    x.calibra(3);
+                }
+    }
+    private static void printCorrida() {
+        System.out.println("-----------------------------------------------------------");
+        for(Veiculo x : veiculos) {
+            if(x instanceof Bicicleta) {
+                Bicicleta aux = (Bicicleta) x;
+                aux.desenhar();
+            }
+            else if(x instanceof Motocicleta) {
+                Motocicleta aux = (Motocicleta) x;
+                aux.desenhar();
+            }
+            else if(x instanceof CarroPopular) {
+                CarroPopular aux = (CarroPopular) x;
+                aux.desenhar();
+            }
+            else if(x instanceof Ferrari) {
+                Ferrari aux = (Ferrari) x;
+                aux.desenhar();
+            }
+            System.out.println("-----------------------------------------------------------");
+        }
     }
 }

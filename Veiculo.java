@@ -21,7 +21,10 @@ public abstract class Veiculo {
 	{
 		return mov;
 	}
-
+	public int Getnrod()
+	{
+		return nrod;
+	}
 	public boolean Mover()// funcao para mover o veiculo
 	{
 		int i = 0;
