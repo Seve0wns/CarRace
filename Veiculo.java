@@ -10,7 +10,7 @@ public abstract class Veiculo {
 		dx = 0;
 		this.mov = mov;
 		this.id = id;
-		rodas = new Roda[nrod];
+		this.rodas = new Roda[nrod];
 		for (Roda x : rodas) {
 			x = new Roda();
 			x.SetCalibragem();
@@ -69,9 +69,9 @@ public abstract class Veiculo {
 	public String toString() {
 		String data = "";
 		data += "ID: " + id;
-		for (int i = 0; i < rodas.length; i++) {
+		for (int i = 0; i < nrod; i++) {
 			data += ", roda " + (i + 1) + ": ";
-			data += rodas[i].GetCalibragem() ? "F" : "E";// caso a calibragem da roda seja igual a true, entao esfre "F"
+			data += rodas[i].GetCalibragem();// caso a calibragem da roda seja igual a true, entao esfre "F"
 															// Full, caso contrario "E" Empty
 		}
 		data += ", Distancia Percorrida: " + dx;
