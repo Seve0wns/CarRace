@@ -5,6 +5,13 @@
             "name": "CodeLens (Launch) - Simulador",
             "request": "launch",
             "mainClass": "Simulador",
+            "projectName": "CarRace"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Simulador",
+            "request": "launch",
+            "mainClass": "Simulador",
             "projectName": "CarRace_f6527998"
         }
     ]

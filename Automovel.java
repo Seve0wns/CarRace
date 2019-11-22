@@ -17,10 +17,13 @@ public abstract class Automovel extends Veiculo implements IPVA {
     }
 
     public boolean Mover() {
-        if (IPVA && combustivel > super.GetSpeed() * consumo && super.Mover())// caso o carro esteja com o IPVA pago e
+        if (IPVA && combustivel > GetSpeed() * consumo && tudoCalibrado()) {// caso o carro esteja com o IPVA pago e
                                                                               // tenha combustivel suficiente, seu
                                                                               // movimento depende da calibragem
-            combustivel -= super.GetSpeed() * consumo;// caso o automovel se mova, ele gasta combustivel
+            combustivel -= GetSpeed() * consumo;// caso o automovel se mova, ele gasta combustivel
+            SetPos(GetPos()+GetSpeed());
+            return true;
+        }
         return false;
     }
 
@@ -31,7 +34,7 @@ public abstract class Automovel extends Veiculo implements IPVA {
 
     public String toString() {
         String data = super.toString();
-        data += ", IPVA: ";
+        data += ", IPVA = "+priceIPVA+" : ";
         data += IPVA ? "Pago" : "Nao Pago";
         data += ", Combustivel: " + combustivel;
         return data;

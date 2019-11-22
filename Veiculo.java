@@ -11,9 +11,9 @@ public abstract class Veiculo {
 		this.mov = mov;
 		this.id = id;
 		this.rodas = new Roda[nrod];
-		for (Roda x : rodas) {
-			x = new Roda();
-			x.SetCalibragem();
+		for (int i=0;i<nrod;i++) {
+			rodas[i] = new Roda();
+			rodas[i].SetCalibragem();
 		}
 	}
 
@@ -25,45 +25,38 @@ public abstract class Veiculo {
 	{
 		return nrod;
 	}
-	public boolean Mover()// funcao para mover o veiculo
-	{
-		int i = 0;
-		boolean fcalibragem = true;
-		while (fcalibragem && i < nrod)// checa se o veiculo esta com todos os pneus calibrados
-			fcalibragem = fcalibragem && rodas[i].GetCalibragem();
-		if (fcalibragem)// caso estiver, o veiculo pode se mover
-		{
-			dx += mov;
-			return true;// retorna true caso e veiculo se mova
-		}
-		return false;// retorna false caso contrario
-	}
-
+	public abstract boolean Mover();
+	public abstract void desenhar();
 	public int GetID() {
 		return id;
 	}
-
-	public void desenhar(String[] design) {
-		String pos = "\n";
-		for (int i = 0; i < dx; i++)// string que dara os espacos para simular a posicao do veiculo na pista
-			pos += " ";
-		for (String x : design)
-			System.out.print(pos + x);
-	}
-
 	public void calibra(int i)// funcao para a calibragem da i-esima roda
 	{
 		rodas[i].SetCalibragem();
+	}
+	public void calibrarTodos() {
+		for (Roda x : rodas) {
+			x.SetCalibragem();
+		}
 	}
 
 	public void Esvaziar(int i)// esvazia a i-esima roda
 	{
 		rodas[i].Esvaziar();
 	}
-
+	public boolean tudoCalibrado() { // checa se o veiculo esta com todos os pneus calibrados
+		boolean fcalibragem = true;
+		for(int i=0;fcalibragem && i < nrod;i++)
+			fcalibragem = fcalibragem && rodas[i].GetCalibragem();
+		return fcalibragem;
+	}
 	public int GetPos()// retorna a distancia total percorrida pelo veiculo
 	{
 		return dx;
+	}
+	public void SetPos(int dx) // modifica a distanca total percorrida pelo veiculo
+	{
+		this.dx=dx;
 	}
 
 	public String toString() {

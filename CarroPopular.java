@@ -10,8 +10,12 @@ public class CarroPopular extends Automovel implements IPVA {
         CarroPopular[3] = "=`-(_)--(_)-'\n\n";
     }
 
-    public void desenhar() {
-        super.desenhar(CarroPopular);
+    public void desenhar()  {
+		String pos = "\n";
+		for (int i = 0; i < this.GetPos(); i++)// string que dara os espacos para simular a posicao do veiculo na pista
+			pos += " ";
+		for (String x : CarroPopular)
+			System.out.print(pos + x);
     }
 
     public String toString() {
