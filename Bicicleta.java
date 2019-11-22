@@ -8,21 +8,23 @@ public class Bicicleta extends Veiculo {
         Bicicleta[1] = " _`\\<,_";
         Bicicleta[2] = "(*)/ (*)\n\n";
     }
+
     public boolean Mover()// funcao para mover o veiculo
-	{
-		if (tudoCalibrado()) {
-            SetPos(GetPos()+GetSpeed());
+    {
+        if (tudoCalibrado()) {
+            SetPos(GetPos() + GetSpeed());
             return true;
         }
         return false;
     }
+
     public void desenhar() {
-		String pos = "\n";
-		for (int i = 0; i < this.GetPos(); i++)// string que dara os espacos para simular a posicao do veiculo na pista
-			pos += " ";
-		for (String x : Bicicleta)
-			System.out.print(pos + x);
-	}
+        String pos = "\n";
+        for (int i = 0; i < this.GetPos(); i++)// string que dara os espacos para simular a posicao do veiculo na pista
+            pos += " ";
+        for (String x : Bicicleta)
+            System.out.print(pos + x);
+    }
 
     public String toString() {
         return "Bicicleta, " + super.toString();

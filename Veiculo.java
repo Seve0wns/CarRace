@@ -11,7 +11,7 @@ public abstract class Veiculo {
 		this.mov = mov;
 		this.id = id;
 		this.rodas = new Roda[nrod];
-		for (int i=0;i<nrod;i++) {
+		for (int i = 0; i < nrod; i++) {
 			rodas[i] = new Roda();
 			rodas[i].SetCalibragem();
 		}
@@ -21,19 +21,20 @@ public abstract class Veiculo {
 	{
 		return mov;
 	}
-	public int Getnrod()
-	{
+
+	public int Getnrod() {
 		return nrod;
 	}
-	public abstract boolean Mover();
-	public abstract void desenhar();
+
 	public int GetID() {
 		return id;
 	}
+
 	public void calibra(int i)// funcao para a calibragem da i-esima roda
 	{
 		rodas[i].SetCalibragem();
 	}
+
 	public void calibrarTodos() {
 		for (Roda x : rodas) {
 			x.SetCalibragem();
@@ -44,20 +45,27 @@ public abstract class Veiculo {
 	{
 		rodas[i].Esvaziar();
 	}
+
 	public boolean tudoCalibrado() { // checa se o veiculo esta com todos os pneus calibrados
 		boolean fcalibragem = true;
-		for(int i=0;fcalibragem && i < nrod;i++)
+		for (int i = 0; fcalibragem && i < nrod; i++)
 			fcalibragem = fcalibragem && rodas[i].GetCalibragem();
 		return fcalibragem;
 	}
+
 	public int GetPos()// retorna a distancia total percorrida pelo veiculo
 	{
 		return dx;
 	}
+
 	public void SetPos(int dx) // modifica a distanca total percorrida pelo veiculo
 	{
-		this.dx=dx;
+		this.dx = dx;
 	}
+
+	public abstract boolean Mover();
+
+	public abstract void desenhar();
 
 	public String toString() {
 		String data = "";
@@ -65,7 +73,7 @@ public abstract class Veiculo {
 		for (int i = 0; i < nrod; i++) {
 			data += ", roda " + (i + 1) + ": ";
 			data += rodas[i].GetCalibragem();// caso a calibragem da roda seja igual a true, entao esfre "F"
-															// Full, caso contrario "E" Empty
+												// Full, caso contrario "E" Empty
 		}
 		data += ", Distancia Percorrida: " + dx;
 		return data;
