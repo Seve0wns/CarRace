@@ -9,50 +9,50 @@ public class Simulador {
         veiculos = new Veiculo[20];
         while (menu != 0) {
             printMenu();
-            System.out.println("Opção menu: ");
-            menu = verify(0, 12);
+            System.out.println("Opcao menu: ");
+            menu = verify(0, 11);
             if (menu == 1) {
-                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 incluirVeiculo(verify(1, 4));
             } else if (menu == 2) {
-                System.out.println("Informe o id do veículo: ");
+                System.out.println("Informe o id do veiculo: ");
                 removerVeiculo(verify(0, 19));
             } else if (menu == 3) {
-                System.out.println("Informe o id do veículo: ");
+                System.out.println("Informe o id do veiculo: ");
                 int id = verify(0, 19);
                 leitor = new Scanner(System.in);
-                System.out.println("Informe a quantidade de combustível: ");
+                System.out.println("Informe a quantidade de combustivel: ");
                 int litros = leitor.nextInt();
                 abastecerVeiculo(id, litros);
             } else if (menu == 4) {
-                System.out.println("Informe o id do veículo: ");
+                System.out.println("Informe o id do veiculo: ");
                 moverVeiculo(verify(0, 19));
             } else if (menu == 5) {
-                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 moverTipo(verify(1, 4));
             } else if (menu == 6) {
                 printDadosTodos();
             } else if (menu == 7) {
-                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 printDadosTipo(verify(1, 4));
             } else if (menu == 8) {
-                System.out.println("Informe o id do veículo: ");
+                System.out.println("Informe o id do veiculo: ");
                 int id = verify(0, 19);
                 if (verificaExistencia(id)) {
                     int n = veiculos[id].Getnrod();
-                    System.out.println("Informe o número do penu (1 - " + n + "): ");
+                    System.out.println("Informe o numero do penu (1 - " + n + "): ");
                     esvaziarPneu(id, verify(1, n));
                 }
             } else if (menu == 9) {
-                System.out.println("Informe o id do veículo: ");
+                System.out.println("Informe o id do veiculo: ");
                 int id = verify(0, 19);
                 if (verificaExistencia(id)) {
                     int n = veiculos[id].Getnrod();
-                    System.out.println("Informe o número do penu (1 - " + n + "): ");
+                    System.out.println("Informe o numero do penu (1 - " + n + "): ");
                     calibrarPneu(id, verify(1, n));
                 }
             } else if (menu == 10) {
-                System.out.println("Informe o tipo de veículo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
+                System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 calibrarTipo(verify(1, 4));
             } else if (menu == 11) {
                 printCorrida();
@@ -73,7 +73,7 @@ public class Simulador {
 
     private static boolean verificaExistencia(int id) {
         if (veiculos[id] == null) {
-            System.out.println("Veículo inexistente!");
+            System.out.println("Veiculo inexistente!");
             return false;
         } else
             return true;
@@ -81,16 +81,16 @@ public class Simulador {
 
     private static void printMenu() {
         System.out.println("00 - Sair");
-        System.out.println("01 - Incluir veículo");
-        System.out.println("02 - Remover um veículo");
-        System.out.println("03 - Abastecer um veículo");
-        System.out.println("04 - Movimentar um veículo");
-        System.out.println("05 - Movimentar veículos por tipo");
-        System.out.println("06 - Imprimir todos os dados de todos os veículos");
-        System.out.println("07 - Imprimir dados de veículos por tipo");
-        System.out.println("08 - Esvaziar um pneu específico");
-        System.out.println("09 - Calibrar um pneu específico");
-        System.out.println("10 - Calibrar todos os pneus por tipo do veículo");
+        System.out.println("01 - Incluir veiculo");
+        System.out.println("02 - Remover um veiculo");
+        System.out.println("03 - Abastecer um veiculo");
+        System.out.println("04 - Movimentar um veiculo");
+        System.out.println("05 - Movimentar veiculos por tipo");
+        System.out.println("06 - Imprimir todos os dados de todos os veiculos");
+        System.out.println("07 - Imprimir dados de veiculos por tipo");
+        System.out.println("08 - Esvaziar um pneu especifico");
+        System.out.println("09 - Calibrar um pneu especifico");
+        System.out.println("10 - Calibrar todos os pneus por tipo do veiculo");
         System.out.println("11 - Imprimir pista de corrida");
     }
 
@@ -108,7 +108,7 @@ public class Simulador {
             else if (tipo == 4)
                 veiculos[i] = new Ferrari(i);
         } else
-            System.out.println("Você ja atingiu o número máximo de veículos!");
+            System.out.println("Voce ja atingiu o numero maximo de veiculos!");
     }
 
     private static void removerVeiculo(int id) {
@@ -119,7 +119,7 @@ public class Simulador {
     private static void abastecerVeiculo(int id, int l) {
         if (verificaExistencia(id)) {
             if (veiculos[id] instanceof Bicicleta)
-                System.out.println("Você não pode abastecer uma bicicleta!");
+                System.out.println("Voce nao pode abastecer uma bicicleta!");
             else {
                 Automovel aux = (Automovel) veiculos[id];
                 aux.abastecer(l);
@@ -132,7 +132,7 @@ public class Simulador {
             if (veiculos[id].Mover())
                 System.out.println("Moveu!");
             else
-                System.out.println("Não moveu!");
+                System.out.println("Nao moveu!");
         }
     }
 
@@ -225,11 +225,12 @@ public class Simulador {
     }
 
     private static void printCorrida() {
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------");
         for (Veiculo x : veiculos) {
             if (x != null) {
+                System.out.println("ID = "+x.GetID());
                 x.desenhar();
-                System.out.println("-----------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------------------------------------------");
             }
         }
     }

@@ -8,9 +8,11 @@ public class Roda {
     }
 
     public void SetCalibragem() {
-        Random rand = new Random();
-        calibragem = (rand.nextInt(101) % 2 == 0 ? true : false);// sorteia um numero de 0 a 100, caso seja um numero
+        if(!calibragem) {
+            Random rand = new Random();
+            calibragem = (rand.nextInt(101) % 2 == 0 ? true : false);// sorteia um numero de 0 a 100, caso seja um numero
                                                                  // par, o pneu esta calibrado, caso contrario, nao
+        }
     }
 
     public void Esvaziar()// esvazia o pneu
