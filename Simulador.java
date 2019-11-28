@@ -3,8 +3,10 @@ import java.util.Scanner;
 public class Simulador {
     private static Veiculo[] veiculos;
     private static Scanner leitor;
-
-    public static void main(String[] args) {
+    /*
+    Calibrar com chance?
+    */
+        public static void main(String[] args) {
         int menu = 1;
         veiculos = new Veiculo[20];
         while (menu != 0) {
