@@ -11,10 +11,9 @@ public abstract class Veiculo {
 		this.mov = mov;
 		this.id = id;
 		this.rodas = new Roda[nrod];
-		for (int i = 0; i < nrod; i++) {
+		for (int i = 0; i < nrod; i++)
 			rodas[i] = new Roda();
-			rodas[i].SetCalibragem();
-		}
+
 	}
 
 	public int GetSpeed()// getter para a velocidade do veiculo

@@ -3,16 +3,13 @@ import java.util.Scanner;
 public class Simulador {
     private static Veiculo[] veiculos;
     private static Scanner leitor;
-    /*
-    Calibrar com chance?
-    */
         public static void main(String[] args) {
-        int menu = 1;
+        int menu = 0;
         veiculos = new Veiculo[20];
-        while (menu != 0) {
+        while (menu != 12) {
             printMenu();
             System.out.println("Opcao menu: ");
-            menu = verify(0, 11);
+            menu = verify(0, 12);
             if (menu == 1) {
                 System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 incluirVeiculo(verify(1, 4));
@@ -82,7 +79,7 @@ public class Simulador {
     }
 
     private static void printMenu() {
-        System.out.println("00 - Sair");
+        System.out.println("00 - Imprimir menu");
         System.out.println("01 - Incluir veiculo");
         System.out.println("02 - Remover um veiculo");
         System.out.println("03 - Abastecer um veiculo");
@@ -94,6 +91,7 @@ public class Simulador {
         System.out.println("09 - Calibrar um pneu especifico");
         System.out.println("10 - Calibrar todos os pneus por tipo do veiculo");
         System.out.println("11 - Imprimir pista de corrida");
+        System.out.println("12 - Sair");
     }
 
     private static void incluirVeiculo(int tipo) {
