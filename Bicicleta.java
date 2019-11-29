@@ -1,5 +1,5 @@
 public class Bicicleta extends Veiculo {
-    String[] Bicicleta = new String[3];
+    private String[] Bicicleta = new String[3];
 
     public Bicicleta(int id) {
         super(2, 2, id);// a bicicleta tem duas rodas e se move a uma velocidade de dois blocos por

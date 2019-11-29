@@ -60,7 +60,7 @@ public class Simulador {
         }
     }
 
-    private static int verify(int chao, int teto) {
+    private static int verify(int chao, int teto) { // Lê um numero e verifica se está dentro do intervalo e retorna
         leitor = new Scanner(System.in);
         int output;
         do {
@@ -71,7 +71,7 @@ public class Simulador {
         return output;
     }
 
-    private static void printMenu() {
+    private static void printMenu() { 
         System.out.println("00 - Imprimir menu");
         System.out.println("01 - Incluir veiculo");
         System.out.println("02 - Remover um veiculo");
@@ -87,7 +87,7 @@ public class Simulador {
         System.out.println("12 - Sair");
     }
 
-    public static boolean verificaExistencia(int id) {
+    public static boolean verificaExistencia(int id) { // Verifica se um veiculo ID existe
         if (veiculos[id] == null) {
             System.out.println("Veiculo inexistente!");
             return false;
@@ -95,7 +95,7 @@ public class Simulador {
             return true;
     }
 
-    public static void incluirVeiculo(int tipo) {
+    public static void incluirVeiculo(int tipo) { // adiciona um novo veiculo ( tipo = 1,2,3 ou 4)
         int i = 0;
         while (i < 20 && veiculos[i] != null)
             i++;
@@ -112,12 +112,12 @@ public class Simulador {
             System.out.println("Voce ja atingiu o numero maximo de veiculos!");
     }
 
-    public static void removerVeiculo(int id) {
+    public static void removerVeiculo(int id) { // remove um veiculo ID
         if (verificaExistencia(id))
             veiculos[id] = null;
     }
 
-    public static void abastecerVeiculo(int id, int l) {
+    public static void abastecerVeiculo(int id, int l) { // abstace um veiculo ID com l de combustivel
         if (verificaExistencia(id)) {
             if (veiculos[id] instanceof Bicicleta)
                 System.out.println("Voce nao pode abastecer uma bicicleta!");
@@ -128,7 +128,7 @@ public class Simulador {
         }
     }
 
-    public static void moverVeiculo(int id) {
+    public static void moverVeiculo(int id) { // move um veiculo ID
         if (verificaExistencia(id)) {
             if (veiculos[id].Mover())
                 System.out.println("Moveu!");
@@ -137,25 +137,25 @@ public class Simulador {
         }
     }
 
-    public static void moverTipo(int tipo) {
-        if (tipo == 1)
+    public static void moverTipo(int tipo) { // move um tipo de veiculo (1,2,3 ou 4)
+        if (tipo == 1) // Bicicleta
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
                     x.Mover();
             }
-        else if (tipo == 2)
+        else if (tipo == 2) // Motocicleta
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Motocicleta) {
                     x.Mover();
                 }
             }
-        else if (tipo == 3)
+        else if (tipo == 3) // Carro Popular
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof CarroPopular) {
                     x.Mover();
                 }
             }
-        else if (tipo == 4)
+        else if (tipo == 4) // Ferrari
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Ferrari) {
                     x.Mover();
@@ -163,14 +163,14 @@ public class Simulador {
             }
     }
 
-    public static void printDadosTodos() {
+    public static void printDadosTodos() { // Imprime todos os dados de todos os veiculos
         for (Veiculo x : veiculos) {
             if (x != null)
                 System.out.println(x);
         }
     }
 
-    public static void printDadosTipo(int tipo) {
+    public static void printDadosTipo(int tipo) { // Imprime todos os dados dos veiculos do tipo
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
@@ -193,17 +193,17 @@ public class Simulador {
             }
     }
 
-    public static void esvaziarPneu(int id, int pneu) {
+    public static void esvaziarPneu(int id, int pneu) { // Esvazia um pneu especifico de ID
         if (verificaExistencia(id))
             veiculos[id].Esvaziar(pneu - 1);
     }
 
-    public static void calibrarPneu(int id, int pneu) {
+    public static void calibrarPneu(int id, int pneu) { // calibra um pneu especifico de ID
         if (verificaExistencia(id))
             veiculos[id].calibra(pneu - 1);
     }
 
-    public static void calibrarTipo(int tipo) {
+    public static void calibrarTipo(int tipo) { // calibrar todos os pneus de todos os veiculos do tipo
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
@@ -225,7 +225,7 @@ public class Simulador {
                     x.calibrarTodos();
     }
 
-    public static void printCorrida() {
+    public static void printCorrida() { // imprime a corrida
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------------------");
         for (Veiculo x : veiculos) {
