@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Simulador {
     private static Veiculo[] veiculos;
     private static Scanner leitor;
-        public static void main(String[] args) {
+
+    public static void main(String[] args) {
         int menu = 0;
         veiculos = new Veiculo[20];
         while (menu != 12) {
@@ -70,14 +71,6 @@ public class Simulador {
         return output;
     }
 
-    private static boolean verificaExistencia(int id) {
-        if (veiculos[id] == null) {
-            System.out.println("Veiculo inexistente!");
-            return false;
-        } else
-            return true;
-    }
-
     private static void printMenu() {
         System.out.println("00 - Imprimir menu");
         System.out.println("01 - Incluir veiculo");
@@ -94,7 +87,15 @@ public class Simulador {
         System.out.println("12 - Sair");
     }
 
-    private static void incluirVeiculo(int tipo) {
+    public static boolean verificaExistencia(int id) {
+        if (veiculos[id] == null) {
+            System.out.println("Veiculo inexistente!");
+            return false;
+        } else
+            return true;
+    }
+
+    public static void incluirVeiculo(int tipo) {
         int i = 0;
         while (i < 20 && veiculos[i] != null)
             i++;
@@ -111,12 +112,12 @@ public class Simulador {
             System.out.println("Voce ja atingiu o numero maximo de veiculos!");
     }
 
-    private static void removerVeiculo(int id) {
+    public static void removerVeiculo(int id) {
         if (verificaExistencia(id))
             veiculos[id] = null;
     }
 
-    private static void abastecerVeiculo(int id, int l) {
+    public static void abastecerVeiculo(int id, int l) {
         if (verificaExistencia(id)) {
             if (veiculos[id] instanceof Bicicleta)
                 System.out.println("Voce nao pode abastecer uma bicicleta!");
@@ -127,7 +128,7 @@ public class Simulador {
         }
     }
 
-    private static void moverVeiculo(int id) {
+    public static void moverVeiculo(int id) {
         if (verificaExistencia(id)) {
             if (veiculos[id].Mover())
                 System.out.println("Moveu!");
@@ -136,7 +137,7 @@ public class Simulador {
         }
     }
 
-    private static void moverTipo(int tipo) {
+    public static void moverTipo(int tipo) {
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
@@ -162,14 +163,14 @@ public class Simulador {
             }
     }
 
-    private static void printDadosTodos() {
+    public static void printDadosTodos() {
         for (Veiculo x : veiculos) {
             if (x != null)
                 System.out.println(x);
         }
     }
 
-    private static void printDadosTipo(int tipo) {
+    public static void printDadosTipo(int tipo) {
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
@@ -192,17 +193,17 @@ public class Simulador {
             }
     }
 
-    private static void esvaziarPneu(int id, int pneu) {
+    public static void esvaziarPneu(int id, int pneu) {
         if (verificaExistencia(id))
             veiculos[id].Esvaziar(pneu - 1);
     }
 
-    private static void calibrarPneu(int id, int pneu) {
+    public static void calibrarPneu(int id, int pneu) {
         if (verificaExistencia(id))
             veiculos[id].calibra(pneu - 1);
     }
 
-    private static void calibrarTipo(int tipo) {
+    public static void calibrarTipo(int tipo) {
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
@@ -224,13 +225,15 @@ public class Simulador {
                     x.calibrarTodos();
     }
 
-    private static void printCorrida() {
-        System.out.println("----------------------------------------------------------------------------------------------------------------------");
+    public static void printCorrida() {
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------------------");
         for (Veiculo x : veiculos) {
             if (x != null) {
-                System.out.println("ID = "+x.GetID());
+                System.out.println("ID = " + x.GetID());
                 x.desenhar();
-                System.out.println("----------------------------------------------------------------------------------------------------------------------");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------------------------------");
             }
         }
     }
