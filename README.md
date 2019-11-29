@@ -1,2 +1,0 @@
-# CarRace
-Trabalho2POO

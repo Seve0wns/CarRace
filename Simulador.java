@@ -7,11 +7,13 @@ public class Simulador {
     public static void main(String[] args) {
         int menu = 0;
         veiculos = new Veiculo[20];
+        printMenu();
         while (menu != 12) {
-            printMenu();
             System.out.println("Opcao menu: ");
             menu = verify(0, 12);
-            if (menu == 1) {
+            if (menu == 0)
+                printMenu();
+            else if (menu == 1) {
                 System.out.println("Informe o tipo de veiculo\n1 - Bicicleta\n2 - Motocicleta\n3 - Carro\n4 - Ferrari");
                 incluirVeiculo(verify(1, 4));
             } else if (menu == 2) {
