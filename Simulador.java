@@ -209,22 +209,22 @@ public class Simulador {
         if (tipo == 1)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Bicicleta)
-                    x.calibrarTodos();
+                    x.calibra();
             }
         else if (tipo == 2)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof Motocicleta)
-                    x.calibrarTodos();
+                    x.calibra();
             }
         else if (tipo == 3)
             for (Veiculo x : veiculos) {
                 if (x != null && x instanceof CarroPopular)
-                    x.calibrarTodos();
+                    x.calibra();
             }
         else if (tipo == 4)
             for (Veiculo x : veiculos)
                 if (x != null && x instanceof Ferrari)
-                    x.calibrarTodos();
+                    x.calibra();
     }
 
     public static void printCorrida() { // imprime a corrida

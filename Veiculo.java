@@ -28,18 +28,16 @@ public abstract class Veiculo {
 	public int GetID() {
 		return id;
 	}
-
-	public void calibra(int i)// funcao para a calibragem da i-esima roda
+	public void calibra()// Calibra todas as rodas
 	{
-		rodas[i].SetCalibragem();
-	}
-
-	public void calibrarTodos() {
 		for (Roda x : rodas) {
 			x.SetCalibragem();
 		}
 	}
-
+	public void calibra(int i)// funcao para a calibragem da i-esima roda
+	{
+		rodas[i].SetCalibragem();
+	}
 	public void Esvaziar(int i)// esvazia a i-esima roda
 	{
 		rodas[i].Esvaziar();
